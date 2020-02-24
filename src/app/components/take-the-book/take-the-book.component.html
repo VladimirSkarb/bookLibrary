@@ -1,0 +1,23 @@
+<div class="todo-form-container mt-5 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Take The Book</h5>
+            <form (ngSubmit)="onSubmit()" #mainForm = "ngForm">
+              <div class="alert alert-danger mt-2" *ngIf="takeForm">There is no such book!</div>
+              <input [(ngModel)]="userForm.name" type="text" name="name" class="form-control" #name = "ngModel" placeholder="Your Name" required>
+              <div class="alert alert-danger mt-2" *ngIf="name.invalid && name.dirty">Input is required</div>
+              <input [(ngModel)]="userForm.takeBook[0].book" type="text" name="author" class="form-control mt-2" #author = "ngModel" placeholder="Title Book" required>
+              <div class="alert alert-danger mt-2" *ngIf="author.invalid && author.dirty">Input is required</div>
+              <input [(ngModel)]="userForm.takeBook[0].date" type="date" name="year" class="form-control mt-2" #year = "ngModel" placeholder="Year" required>
+              <div class="alert alert-danger mt-2" *ngIf="year.invalid && year.dirty">Input is required</div>
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="mainForm.invalid">Take The Book</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

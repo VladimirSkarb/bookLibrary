@@ -1,0 +1,27 @@
+<div class="todo-form-container mt-5 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add Book</h5>
+            <form (ngSubmit)="onSubmit()" #mainForm = "ngForm">
+              <input [(ngModel)]="bookForm.name" type="text" name="name" class="form-control" #name = "ngModel" placeholder="Title Book" required>
+              <div class="alert alert-danger mt-2" *ngIf="name.invalid && name.dirty">Input is required</div>
+              <input [(ngModel)]="bookForm.author" type="text" name="author" class="form-control mt-2" #author = "ngModel" placeholder="Author of the book" required>
+              <div class="alert alert-danger mt-2" *ngIf="author.invalid && author.dirty">Input is required</div>
+              <input [(ngModel)]="bookForm.year" type="number" name="year" class="form-control mt-2" #year = "ngModel" placeholder="Year" required>
+              <div class="alert alert-danger mt-2" *ngIf="year.invalid && year.dirty">Input is required</div>
+              <p><select class="custom-select mt-2" [(ngModel)]="bookForm.genre" [value]="genres[1]" name="genre">
+                <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+              </select></p>
+              <input [(ngModel)]="bookForm.count" type="number" name="count" class="form-control mt-2" #count = "ngModel" placeholder="How many books?" required>
+              <div class="alert alert-danger mt-2" *ngIf="count.invalid && count.dirty">Input is required</div>
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="mainForm.invalid">Add Book</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

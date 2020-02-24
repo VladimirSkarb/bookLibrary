@@ -1,0 +1,26 @@
+<div class="card mr-2 mb-2 text-center" style="width: 15rem; height: 17rem;">
+  <div class="card-body">
+    <h5 class="card-title" *ngIf="!formEdit">{{ item.name }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted" *ngIf="!formEdit">{{ item.author }}</h6>
+    <p class="card-text" *ngIf="!formEdit">{{ item.year }}</p>
+    <p class="card-text" *ngIf="!formEdit">{{ item.genre }}</p>
+    <p class="card-text" *ngIf="!formEdit">{{ item.count }}</p>
+  <form (ngSubmit)="onSubmit(mainForm)" #mainForm="ngForm" *ngIf="formEdit">
+    <input [(ngModel)]="bookForm.name" type="text" name="name" class="form-control form-control-sm" #name = "ngModel" required="required">
+    <div class="alert alert-danger mt-2" *ngIf="name.invalid && name.dirty">Input is required</div>
+    <input [(ngModel)]="bookForm.author" type="text" name="author" class="form-control form-control-sm mt-2" #author = "ngModel" required="required">
+    <div class="alert alert-danger mt-2" *ngIf="author.invalid && author.dirty">Input is required</div>
+    <input [(ngModel)]="bookForm.year" type="number" name="year" class="form-control form-control-sm mt-2" #year = "ngModel" required="required">
+    <div class="alert alert-danger mt-2" *ngIf="year.invalid && year.dirty">Input is required</div>
+    <p><select class="custom-select custom-select-sm mt-2" [(ngModel)]="bookForm.genre" name="genre">
+      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+    </select></p>
+    <input [(ngModel)]="bookForm.count" type="number" name="count" class="form-control form-control-sm" #count = "ngModel" required="required">
+    <div class="alert alert-danger mt-2" *ngIf="count.invalid && count.dirty">Input is required</div>
+    <button class="btn btn-success mt-2" type="submit" [disabled]="mainForm.invalid">Save</button>
+    <button class="btn btn-warning mt-2 ml-1" (click)="editItem()">{{ editBtn }}</button>
+  </form>
+  <button class="btn btn-danger mt-4" (click)="deleteItem()" *ngIf="!formEdit">Delete</button>
+  <button class="btn btn-warning ml-1 mt-4" (click)="editItem()" *ngIf="!formEdit">{{ editBtn }}</button>
+  </div>
+</div>

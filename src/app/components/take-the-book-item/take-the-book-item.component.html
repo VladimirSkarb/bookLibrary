@@ -1,0 +1,9 @@
+<div class="card mr-2 mb-2 p-2 text-center" style="width: 15rem; height: 17rem;" >
+  <div class="card-body mb-2">
+    <h5 class="card-title">{{ item.name }}</h5>
+    <div class="card-text card-body card" *ngFor = "let el of item.takeBook">
+      <p>Book: <b>{{el.book }}</b></p>
+      <p class="">Date: <b>{{el.date}}</b></p>
+    </div>
+  </div>
+</div>
